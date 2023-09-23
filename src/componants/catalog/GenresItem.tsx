@@ -1,7 +1,7 @@
 import React from 'react';
 import { CatalogType } from '../../types';
 
-const CatalogItem: React.FC<{ catalog: CatalogType }> = ({ catalog }) => (
+const GenresItem: React.FC<{ catalog: CatalogType }> = ({ catalog }) => (
   <li
     className="catalog__genres-item catalog__genres-item--active"
     key={catalog.title}
@@ -12,4 +12,4 @@ const CatalogItem: React.FC<{ catalog: CatalogType }> = ({ catalog }) => (
   </li>
 );
 
-export default CatalogItem;
+export default GenresItem;

@@ -1,7 +1,7 @@
 import { CatalogType } from '../../types';
 import Catalog from '../enums/catalog';
 
-const CATALOGS: CatalogType[] = [
+const GENRES: CatalogType[] = [
   {
     title: Catalog.All,
     link: '#'
@@ -41,4 +41,4 @@ const CATALOGS: CatalogType[] = [
   }
 ];
 
-export default CATALOGS;
+export default GENRES;
