@@ -1,6 +1,6 @@
 import React from 'react';
-import LOCALE from './FilmCard.locale';
-import { ButtonsProps } from './FilmCard.types';
+import LOCALE from './film-card.locale';
+import { ButtonsProps } from './film-card.types';
 
 // мб в другое место
 const Buttons: React.FC<ButtonsProps> = ({ myListCount }) => (

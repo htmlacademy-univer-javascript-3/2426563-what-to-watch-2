@@ -1,9 +1,9 @@
 import React from 'react';
-import Footer from '../../componants/footer/Footer';
+import Footer from '../../componants/footer/footer';
 import Logo from '../../componants/logo';
 import UserBlock from '../../componants/user-block';
 import Catalog from '../../componants/catalog';
-import { smallCardList } from '../../data/constants/smallCardList';
+import { smallCardList } from '../../data/constants/small-card-list';
 
 const MyList: React.FC = () => (
   <div className="user-page">

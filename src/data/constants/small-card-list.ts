@@ -1,4 +1,4 @@
-import { SmallFilmCardProps } from '../../componants/small-film-card/SmallFilmCard.types';
+import { SmallFilmCardProps } from '../../componants/small-film-card/small-film-card.types';
 
 //удалить потом
 export const smallCardList: SmallFilmCardProps[] = [

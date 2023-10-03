@@ -1,7 +1,7 @@
 import Catalog from '../../componants/catalog';
 import FilmCard from '../../componants/film-card';
 import Footer from '../../componants/footer';
-import { smallCardList } from '../../data/constants/smallCardList';
+import { smallCardList } from '../../data/constants/small-card-list';
 
 const Main: React.FC = () => (
   <>

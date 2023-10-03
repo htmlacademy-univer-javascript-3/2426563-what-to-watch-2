@@ -1,9 +1,9 @@
 import React from 'react';
 import GENRES from '../../data/constants/genres';
 import SmallFilmCard from '../small-film-card';
-import LOCALE from './Catalog.locale';
-import GenresItem from './GenresItem';
-import { CatalogProps } from './Catalog.types';
+import LOCALE from './catalog.locale';
+import GenresItem from './genres-item';
+import { CatalogProps } from './catalog.types';
 
 const Catalog: React.FC<CatalogProps> = ({isNeededGenres, cardList}) => (
   <section className="catalog">

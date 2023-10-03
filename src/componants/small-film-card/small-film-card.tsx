@@ -1,5 +1,5 @@
 import React from 'react';
-import { SmallFilmCardProps } from './SmallFilmCard.types';
+import { SmallFilmCardProps } from './small-film-card.types';
 
 const SmallFilmCard: React.FC<SmallFilmCardProps> = ({poster, title, link}) => (
   <article className="small-film-card catalog__films-card">

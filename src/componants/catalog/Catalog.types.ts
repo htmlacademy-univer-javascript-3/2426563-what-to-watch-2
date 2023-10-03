@@ -1,4 +1,4 @@
-import { SmallFilmCardProps } from '../small-film-card/SmallFilmCard.types';
+import { SmallFilmCardProps } from '../small-film-card/small-film-card.types';
 
 export type CatalogProps = {
 	isNeededGenres?: boolean;

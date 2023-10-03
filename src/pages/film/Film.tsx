@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../../componants/logo';
-import UserBlock from '../../componants/user-block/UserBlock';
-import Footer from '../../componants/footer/Footer';
+import UserBlock from '../../componants/user-block/user-block';
+import Footer from '../../componants/footer/footer';
 
 const Film: React.FC = () => (
   <>

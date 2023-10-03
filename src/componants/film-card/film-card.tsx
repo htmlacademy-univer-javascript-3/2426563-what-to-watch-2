@@ -1,9 +1,9 @@
 import React from 'react';
-import LOCALE from './FilmCard.locale';
-import Logo from '../logo/Logo';
-import UserBlock from '../user-block/UserBlock';
-import Buttons from './Buttons';
-import { FilmCardProps } from './FilmCard.types';
+import LOCALE from './film-card.locale';
+import Logo from '../logo/logo';
+import UserBlock from '../user-block/user-block';
+import Buttons from './buttons';
+import { FilmCardProps } from './film-card.types';
 
 const FilmCard: React.FC<FilmCardProps> = ({film, myListCount }) => (
   <section className="film-card">
