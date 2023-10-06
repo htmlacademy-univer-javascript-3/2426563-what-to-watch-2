@@ -1,20 +1,14 @@
 import React from 'react';
 import { IFilm } from '../../data/abstractions';
 import { Link } from 'react-router-dom';
+import SmallVideoPlayer from '../video_player/small_video_player';
 
-const SmallFilmCard: React.FC<IFilm> = ({ id, title, thumbnailUrl }) => (
+const SmallFilmCard: React.FC<IFilm> = (props) => (
   <article className="small-film-card catalog__films-card">
-    <div className="small-film-card__image">
-      <img
-        src={thumbnailUrl}
-        alt={title}
-        width="280"
-        height="175"
-      />
-    </div>
+    <SmallVideoPlayer {...props} />
     <h3 className="small-film-card__title">
-      <Link className="small-film-card__link" to={`/films/${id}`}>
-        {title}
+      <Link className="small-film-card__link" to={`/films/${props.id}`}>
+        {props.title}
       </Link>
     </h3>
   </article>
