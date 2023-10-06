@@ -1,20 +1,21 @@
 import React from 'react';
-import { SmallFilmCardProps } from './SmallFilmCard.types';
+import { IFilm } from '../../data/abstractions';
+import { Link } from 'react-router-dom';
 
-const SmallFilmCard: React.FC<SmallFilmCardProps> = ({poster, title, link}) => (
+const SmallFilmCard: React.FC<IFilm> = ({ id, title, thumbnailUrl }) => (
   <article className="small-film-card catalog__films-card">
     <div className="small-film-card__image">
       <img
-        src={poster.src}
-        alt={poster.alt}
+        src={thumbnailUrl}
+        alt={title}
         width="280"
         height="175"
       />
     </div>
     <h3 className="small-film-card__title">
-      <a className="small-film-card__link" href={link}>
+      <Link className="small-film-card__link" to={`/films/${id}`}>
         {title}
-      </a>
+      </Link>
     </h3>
   </article>
 );

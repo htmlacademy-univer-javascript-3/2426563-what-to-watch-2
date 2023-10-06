@@ -1,5 +1,5 @@
 import React from 'react';
-import LOCALE from './UserBlock.locale';
+import LOCALE from './user-block.locale';
 import { Link } from 'react-router-dom';
 
 // Вероятно надо передавать или брать из контекста src для аватара
