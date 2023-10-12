@@ -1,7 +1,7 @@
 import React from 'react';
 import { IFilm } from '../../data/abstractions';
 import { Link } from 'react-router-dom';
-import SmallVideoPlayer from '../video_player/small_video_player';
+import SmallVideoPlayer from '../video-player/small-video-player';
 
 const SmallFilmCard: React.FC<IFilm> = (props) => (
   <article className="small-film-card catalog__films-card">

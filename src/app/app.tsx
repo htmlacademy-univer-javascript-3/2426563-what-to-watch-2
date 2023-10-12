@@ -1,6 +1,6 @@
 import React from 'react';
 import './main.css';
-import AppRouter from '../componants/routers';
+import AppRouter from '../components/routers';
 
 
 const App: React.FC = () => (
