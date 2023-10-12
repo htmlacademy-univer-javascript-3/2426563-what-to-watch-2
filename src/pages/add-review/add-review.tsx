@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import Logo from '../../componants/logo';
+import Logo from '../../components/logo';
 import Page404 from '../page404';
 import { films } from '../../mocks/films';
 import { useParams } from 'react-router-dom';
 import Breadcrumbs from './breadcrumbs';
-import UserBlock from '../../componants/user-block';
-import RatingInput from '../../componants/input/rating-stars';
+import UserBlock from '../../components/user-block';
+import RatingInput from '../../components/input/rating-stars';
 import LOCALE from './add-rewiew.locale';
 
 const initFormValue = {

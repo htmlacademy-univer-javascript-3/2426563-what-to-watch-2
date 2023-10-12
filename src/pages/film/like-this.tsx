@@ -1,5 +1,5 @@
-import Footer from '../../componants/footer';
-import SmallFilmCard from '../../componants/small-film-card';
+import Footer from '../../components/footer';
+import SmallFilmCard from '../../components/small-film-card';
 import { LikeThisPropsType } from './film.types';
 import React from 'react';
 import LOCALE from './film.locale';

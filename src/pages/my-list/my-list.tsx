@@ -1,8 +1,8 @@
 import React from 'react';
-import Footer from '../../componants/footer/footer';
-import Logo from '../../componants/logo';
-import UserBlock from '../../componants/user-block';
-import Catalog from '../../componants/catalog';
+import Footer from '../../components/footer/footer';
+import Logo from '../../components/logo';
+import UserBlock from '../../components/user-block';
+import Catalog from '../../components/catalog';
 import { films } from '../../mocks/films';
 
 const MyList: React.FC = () => (
