@@ -1,14 +1,21 @@
 import React from 'react';
-import { CatalogType } from '../../types';
+import { GenresItemProps } from './catalog.types';
 
-const GenresItem: React.FC<{ catalog: CatalogType }> = ({ catalog }) => (
+const GenresItem: React.FC<GenresItemProps> = ({
+  catalog, handleSetGenre, isActive
+}) => (
   <li
-    className="catalog__genres-item catalog__genres-item--active"
+    className={`catalog__genres-item ${isActive ? 'catalog__genres-item--active' : ''}`}
     key={catalog.title}
   >
-    <a href={catalog.link} className="catalog__genres-link">
+    <div
+      onClick={() => {
+        handleSetGenre(catalog.title);
+      }}
+      className="catalog__genres-link"
+    >
       {catalog.title}
-    </a>
+    </div>
   </li>
 );
 

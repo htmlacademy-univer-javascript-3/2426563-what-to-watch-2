@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { TIMEOUT_SEC } from '../../data/constants/timeout';
 
 const useSmallVideoPlayer = (videoRef: React.MutableRefObject<HTMLVideoElement | null>) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -13,14 +14,14 @@ const useSmallVideoPlayer = (videoRef: React.MutableRefObject<HTMLVideoElement |
 
   useEffect(() => {
     const videoElement = videoRef.current;
-    let timeoutId: NodeJS.Timeout | undefined;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
     if (isHovered) {
       timeoutId = setTimeout(() => {
         if (videoElement) {
           videoElement.play();
         }
-      }, 1000);
+      }, TIMEOUT_SEC);
     } else {
       if(timeoutId !== undefined){
         clearTimeout(timeoutId);
