@@ -1,4 +1,4 @@
-export const ratingText = (rating: number): string =>{
+export const getRatingText = (rating: number): string =>{
   if(rating < 3) {
     return 'Bad';
   }
