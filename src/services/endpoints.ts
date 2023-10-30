@@ -8,4 +8,6 @@ export class Endpoints {
   public static login = () => '/login';
 
   public static logout = () => '/logout';
+
+  public static getPromo = () => '/promo';
 }
