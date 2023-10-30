@@ -17,7 +17,7 @@ export const fetchFilmAction = createAsyncThunk<void, undefined, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/loadFilm',
+  'data/loadFilms',
   async (_arg, {dispatch, extra: api}) => {
     dispatch(setFilmsDataLoadingStatus(true));
     const { data } = await api.get<IFilmData[]>(Endpoints.getFilms());
@@ -79,7 +79,7 @@ export const fetchFilm = createAsyncThunk<
     extra: AxiosInstance;
   }
 >(
-  '/films/id',
+  'data/loadFilm',
   async ({filmId}, { dispatch, extra: api }) => {
     const { data } = await api.get<IFilmAllInfo>(Endpoints.getFilm(filmId));
     dispatch(loadFilm(data));
@@ -94,8 +94,8 @@ export const fetchPromo = createAsyncThunk<
     extra: AxiosInstance;
   }
 >(
-  '/promo',
+  'data/loadPromo',
   async (_arg, { dispatch, extra: api }) => {
-    const { data } = await api.get<IFilmPromo>('/promo');
+    const { data } = await api.get<IFilmPromo>(Endpoints.getPromo());
     dispatch(loadPromo(data));
   });
