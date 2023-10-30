@@ -1,4 +1,4 @@
-export const starringText = (starrings: string[]): string => {
+export const getStarringText = (starrings: string[]): string => {
   if (starrings.length <= 2) {
     return starrings.join(' and ');
   }
