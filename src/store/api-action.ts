@@ -1,7 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
-import { AppDispatch, State } from '../types/store';
-import { loadFilm, loadFilms, loadPromo, redirectToRoute, requireAuthorization, setFilmsDataLoadingStatus } from './action';
+import {
+  loadFilm,
+  loadFilms,
+  loadPromo,
+  loadReviewsFilm,
+  loadSimilarFilms,
+  redirectToRoute,
+  requireAuthorization,
+  setFilmDataLoadingStatus,
+  setFilmsDataLoadingStatus
+} from './action';
 import { IFilmData } from '../data/abstractions/IFilmData';
 import { Endpoints } from '../services/endpoints';
 import { AuthorizationStatus } from '../data/enums/authorization-status';
@@ -11,6 +20,8 @@ import { dropToken, saveToken } from '../services/token';
 import { AppRoute } from '../data/enums/app-route';
 import { IFilmAllInfo } from '../data/abstractions/IFilmAllInfo';
 import { IFilmPromo } from '../data/abstractions/IFilmPromo';
+import { AppDispatch, State } from '../data/types/store';
+import { IReview } from '../data/abstractions/IReview';
 
 export const fetchFilmAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -81,8 +92,47 @@ export const fetchFilm = createAsyncThunk<
 >(
   'data/loadFilm',
   async ({filmId}, { dispatch, extra: api }) => {
-    const { data } = await api.get<IFilmAllInfo>(Endpoints.getFilm(filmId));
-    dispatch(loadFilm(data));
+    dispatch(setFilmDataLoadingStatus(true));
+    try {
+      const { data } = await api.get<IFilmAllInfo>(Endpoints.getFilm(filmId));
+      dispatch(loadFilm(data));
+    } catch(e) {
+      dispatch(loadFilm(null));
+    } finally {
+      dispatch(setFilmDataLoadingStatus(false));
+    }
+
+
+  });
+
+export const fetchSimilarFilm = createAsyncThunk<
+  void,
+  { filmId: string },
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>(
+  'data/loadSimilarFilms',
+  async ({ filmId }, { dispatch, extra: api }) => {
+    const { data } = await api.get<IFilmData[]>(Endpoints.getSimilarFilms(filmId));
+    dispatch(loadSimilarFilms(data));
+  });
+
+export const fetchReviewsFilm = createAsyncThunk<
+  void,
+  { filmId: string },
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>(
+  'data/loadReviewsFilm',
+  async ({ filmId }, { dispatch, extra: api }) => {
+    const { data } = await api.get<IReview[]>(Endpoints.getReviewsFilm(filmId));
+    dispatch(loadReviewsFilm(data));
   });
 
 export const fetchPromo = createAsyncThunk<
@@ -99,3 +149,15 @@ export const fetchPromo = createAsyncThunk<
     const { data } = await api.get<IFilmPromo>(Endpoints.getPromo());
     dispatch(loadPromo(data));
   });
+
+export const addReview = createAsyncThunk<
+  void,
+  { comment: string; rating: number; filmId: string },
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>('/comments/id', async ({ comment, rating, filmId }, { extra: api }) => {
+  await api.post(`/comments/${filmId}`, { comment, rating });
+});

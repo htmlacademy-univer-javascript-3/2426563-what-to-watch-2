@@ -10,4 +10,8 @@ export class Endpoints {
   public static logout = () => '/logout';
 
   public static getPromo = () => '/promo';
+
+  public static getSimilarFilms = (id: string) => `/films/${id}/similar`;
+
+  public static getReviewsFilm = (id: string) => `/comments/${id}`;
 }
