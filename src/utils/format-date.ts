@@ -1,8 +1,5 @@
 export const formatDate = (rowDate: string): string => {
   const date = new Date(rowDate);
-  if(isNaN(date)){
-    return '';
-  }
   const mount = date.toLocaleString('eng', { month: 'long' });
   const day = date.getDate();
   const year = date.getFullYear();

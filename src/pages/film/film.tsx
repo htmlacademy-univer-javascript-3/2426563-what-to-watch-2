@@ -9,7 +9,7 @@ import Overview from './overview';
 import Details from './details';
 import Reviews from './reviews';
 import LikeThis from './like-this';
-import { FILM_TABS } from '../../data/constants/filmTab';
+import { FILM_TABS } from '../../data/constants/film-tab';
 import LOCALE from './film.locale';
 import { fetchFilm, fetchReviewsFilm, fetchSimilarFilm } from '../../store/api-action';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
