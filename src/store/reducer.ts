@@ -1,5 +1,4 @@
 import Catalog from '../data/enums/catalog';
-import { films } from '../mocks/films';
 import { createReducer } from '@reduxjs/toolkit';
 import {
   setGenre,
@@ -49,7 +48,7 @@ const initialState: InitialState = {
   reviewsFilm: [],
   promo: null,
   filmCount: FILM_STEP,
-  allFilmCount: films.length,
+  allFilmCount: 0,
   isFilmsDataLoading: false,
   isFilmDataLoading: false
 };
