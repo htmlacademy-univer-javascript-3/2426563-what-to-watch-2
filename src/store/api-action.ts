@@ -12,7 +12,6 @@ import {
   setFilmsDataLoadingStatus
 } from './action';
 import { IFilmData } from '../data/abstractions/IFilmData';
-import { Endpoints } from '../services/endpoints';
 import { AuthorizationStatus } from '../data/enums/authorization-status';
 import { AuthData } from '../data/types/auth-data';
 import { IUserData } from '../data/abstractions/IUserData';
@@ -22,6 +21,16 @@ import { IFilmAllInfo } from '../data/abstractions/IFilmAllInfo';
 import { IFilmPromo } from '../data/abstractions/IFilmPromo';
 import { AppDispatch, State } from '../data/types/store';
 import { IReview } from '../data/abstractions/IReview';
+import {
+  getFilms,
+  checkAuth,
+  logout,
+  getFilm,
+  getSimilarFilms,
+  getReviewsFilm,
+  getPromo,
+  login
+} from '../services/endpoints';
 
 export const fetchFilmAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -31,7 +40,7 @@ export const fetchFilmAction = createAsyncThunk<void, undefined, {
   'data/loadFilms',
   async (_arg, {dispatch, extra: api}) => {
     dispatch(setFilmsDataLoadingStatus(true));
-    const { data } = await api.get<IFilmData[]>(Endpoints.getFilms());
+    const { data } = await api.get<IFilmData[]>(getFilms());
     dispatch(setFilmsDataLoadingStatus(false));
     dispatch(loadFilms(data));
   },
@@ -45,7 +54,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   'user/checkAuth',
   async (_arg, {dispatch, extra: api}) => {
     try {
-      await api.get(Endpoints.checkAuth());
+      await api.get(checkAuth());
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
     } catch {
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
@@ -60,7 +69,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   'user/login',
   async ({login: email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<IUserData>(Endpoints.login(), {email, password});
+    const {data: {token}} = await api.post<IUserData>(login(), {email, password});
     saveToken(token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
     dispatch(redirectToRoute(AppRoute.Root));
@@ -74,10 +83,9 @@ export const logoutAction = createAsyncThunk<void, undefined, {
 }>(
   'user/logout',
   async (_arg, {dispatch, extra: api}) => {
-    await api.delete(Endpoints.logout());
+    await api.delete(logout());
     dropToken();
     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-    dispatch(redirectToRoute(AppRoute.Login));
   },
 );
 
@@ -94,7 +102,7 @@ export const fetchFilm = createAsyncThunk<
   async ({filmId}, { dispatch, extra: api }) => {
     dispatch(setFilmDataLoadingStatus(true));
     try {
-      const { data } = await api.get<IFilmAllInfo>(Endpoints.getFilm(filmId));
+      const { data } = await api.get<IFilmAllInfo>(getFilm(filmId));
       dispatch(loadFilm(data));
     } catch(e) {
       dispatch(loadFilm(null));
@@ -116,7 +124,7 @@ export const fetchSimilarFilm = createAsyncThunk<
 >(
   'data/loadSimilarFilms',
   async ({ filmId }, { dispatch, extra: api }) => {
-    const { data } = await api.get<IFilmData[]>(Endpoints.getSimilarFilms(filmId));
+    const { data } = await api.get<IFilmData[]>(getSimilarFilms(filmId));
     dispatch(loadSimilarFilms(data));
   });
 
@@ -131,7 +139,7 @@ export const fetchReviewsFilm = createAsyncThunk<
 >(
   'data/loadReviewsFilm',
   async ({ filmId }, { dispatch, extra: api }) => {
-    const { data } = await api.get<IReview[]>(Endpoints.getReviewsFilm(filmId));
+    const { data } = await api.get<IReview[]>(getReviewsFilm(filmId));
     dispatch(loadReviewsFilm(data));
   });
 
@@ -146,7 +154,7 @@ export const fetchPromo = createAsyncThunk<
 >(
   'data/loadPromo',
   async (_arg, { dispatch, extra: api }) => {
-    const { data } = await api.get<IFilmPromo>(Endpoints.getPromo());
+    const { data } = await api.get<IFilmPromo>(getPromo());
     dispatch(loadPromo(data));
   });
 

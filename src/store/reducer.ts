@@ -19,9 +19,10 @@ import { FILM_STEP } from '../data/constants/film-step';
 import { IFilmData } from '../data/abstractions/IFilmData';
 import { AuthorizationStatus } from '../data/enums/authorization-status';
 import { IFilmPromo } from '../data/abstractions/IFilmPromo';
-import dictionatyGenre from '../utils/dictionary-genre';
+
 import { IFilmAllInfo } from '../data/abstractions/IFilmAllInfo';
 import { IReview } from '../data/abstractions/IReview';
+import genreDictionary from '../utils/genre-dictionary';
 
 type InitialState = {
   authorizationStatus: AuthorizationStatus;
@@ -63,7 +64,7 @@ const reducer = createReducer(initialState, (builder) => {
         state.films = state.allFilms.slice(0, state.filmCount);
         state.allFilmCount = state.films.length;
       } else {
-        state.films = state.allFilms.filter((f)=> dictionatyGenre[state.genre].includes(f.genre)).slice(0, state.filmCount);
+        state.films = state.allFilms.filter((f)=> genreDictionary[state.genre].includes(f.genre)).slice(0, state.filmCount);
         state.allFilmCount = state.allFilms.filter((f)=>f.genre === state.genre).length;
       }
     })

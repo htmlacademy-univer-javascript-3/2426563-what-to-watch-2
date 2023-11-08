@@ -1,6 +1,7 @@
 import Catalog from '../data/enums/catalog';
 
-const dictionatyGenre = {
+const genreDictionaty: Record<Catalog, string[]> = {
+  [Catalog.All]: ['Comedy', 'Crime', 'Documentary', 'Drama', 'Horror', 'Action', 'Adventure', 'Romance', 'Fantasy', 'Thriller'],
   [Catalog.Comedies]: ['Comedy'],
   [Catalog.Crime]: ['Crime'],
   [Catalog.Documentary]: ['Documentary'],
@@ -10,6 +11,6 @@ const dictionatyGenre = {
   [Catalog.Romance]: ['Romance'],
   [Catalog.SciFi]: ['Fantasy'],
   [Catalog.Thrillers]: ['Thriller']
-} as {[index: string] : string[]};
+};
 
-export default dictionatyGenre;
+export default genreDictionaty;

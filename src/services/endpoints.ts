@@ -1,17 +1,16 @@
-export class Endpoints {
-  public static getFilms = () => '/films';
+export const getFilms = () => '/films';
 
-  public static getFilm = (id: string) => `/films/${id}`;
+export const getFilm = (id: string) => `/films/${id}`;
 
-  public static checkAuth = () => '/login';
+export const checkAuth = () => '/login';
 
-  public static login = () => '/login';
+export const login = () => '/login';
 
-  public static logout = () => '/logout';
+export const logout = () => '/logout';
 
-  public static getPromo = () => '/promo';
+export const getPromo = () => '/promo';
 
-  public static getSimilarFilms = (id: string) => `/films/${id}/similar`;
+export const getSimilarFilms = (id: string) => `/films/${id}/similar`;
 
-  public static getReviewsFilm = (id: string) => `/comments/${id}`;
-}
+export const getReviewsFilm = (id: string) => `/comments/${id}`;
+
