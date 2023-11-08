@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { TIMEOUT_SEC } from '../../data/constants/timeout';
+import { TIMEOUT_SEC } from '../data/constants/timeout';
 
 const useSmallVideoPlayer = (videoRef: React.MutableRefObject<HTMLVideoElement | null>) => {
   const [isHovered, setIsHovered] = useState(false);
