@@ -1,4 +1,4 @@
-import Catalog from '../data/enums/catalog';
+import Catalog from '../enums/catalog';
 
 export type CatalogType = {
 	title: Catalog;

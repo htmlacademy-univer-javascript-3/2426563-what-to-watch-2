@@ -13,18 +13,18 @@ function HistoryRouter({
   children,
   history,
 }: HistoryRouterProps) {
-  const [state, setState] = useState({
+  const [historyState, setHistoryState] = useState({
     action: history.action,
     location: history.location,
   });
 
-  useLayoutEffect(() => history.listen(setState), [history]);
+  useLayoutEffect(() => history.listen(setHistoryState), [history]);
 
   return (
     <Router
       basename={basename}
-      location={state.location}
-      navigationType={state.action}
+      location={historyState.location}
+      navigationType={historyState.action}
       navigator={history}
     >
       {children}
