@@ -1,7 +1,7 @@
 import React from 'react';
 import { ItemType } from './tabs.types';
 
-const Item: React.FC<ItemType & { activeKey: string; onClick: (key: string) => void }> = ({
+const TabsItem: React.FC<ItemType & { activeKey: string; onClick: (key: string) => void }> = ({
   label,
   option,
   activeKey,
@@ -19,6 +19,6 @@ const Item: React.FC<ItemType & { activeKey: string; onClick: (key: string) => v
     </div>
   </li>
 );
-const ItemMemo = React.memo(Item);
+const ItemMemo = React.memo(TabsItem);
 
 export default ItemMemo;
