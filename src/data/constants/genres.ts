@@ -12,9 +12,6 @@ const GENRES: CatalogType[] = [
     title: Catalog.Crime,
   },
   {
-    title: Catalog.Documentary,
-  },
-  {
     title: Catalog.Dramas,
   },
   {

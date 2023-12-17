@@ -12,13 +12,11 @@ type ProgressProps = {
 }
 
 const Progress: React.FC<ProgressProps> = ({ progress, handleSlider, sliderRef, runTime }) => (
-  <div className="player__controls-row">
+  <div className="player__controls-row" style={{ cursor: 'pointer' }}>
     <div
       className="player__time"
       ref={sliderRef}
-      onClick={(e) => {
-        handleSlider(e.clientX - PADDING);
-      }}
+      onClick={(e) => handleSlider(e.clientX - PADDING)}
     >
       <progress className="player__progress" value={progress} max="100" />
       <div

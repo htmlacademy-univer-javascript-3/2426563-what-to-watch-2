@@ -8,7 +8,7 @@ type PlayPlayerProps = {
 const PlayPlayer: React.FC<PlayPlayerProps> = ({ handleClick }) => (
   <button type="button" className="player__play" onClick={handleClick}>
     <svg viewBox="0 0 19 19" width="19" height="19">
-      <use xlinkHref="#play-s"></use>
+      <use xlinkHref="#play-s" />
     </svg>
     <span>{LOCALE.PLAY}</span>
   </button>

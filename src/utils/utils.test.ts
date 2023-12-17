@@ -1,4 +1,4 @@
-import { chunk } from './chunk';
+import { getChunk } from './get-chunk';
 import { convertTimeToString } from './convert-time-to-string';
 import { formatDate } from './format-date';
 import { getRatingText } from './get-rating-text';
@@ -19,7 +19,7 @@ describe('utils functions', () => {
     it.each(dataTest)(
       'should chunk $input.sourceArray into subarrays of size $input.chunkSize',
       ({input, expected}) =>{
-        const result = chunk(input.sourceArray, input.chunkSize);
+        const result = getChunk(input.sourceArray, input.chunkSize);
 
         expect(result).toEqual(expected);
       }

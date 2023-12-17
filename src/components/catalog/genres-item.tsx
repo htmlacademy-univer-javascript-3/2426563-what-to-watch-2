@@ -5,12 +5,10 @@ const GenresItem: React.FC<GenresItemProps> = ({
   title, handleSetGenre, isActive
 }) => (
   <li
-    className={`catalog__genres-item ${isActive ? 'catalog__genres-item--active' : ''}`}
+    className={`catalog__genres-item${isActive ? ' catalog__genres-item--active' : ''}`}
   >
     <div
-      onClick={() => {
-        handleSetGenre(title);
-      }}
+      onClick={() => handleSetGenre(title)}
       className="catalog__genres-link"
     >
       {title}
