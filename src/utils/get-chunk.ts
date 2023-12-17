@@ -1,4 +1,4 @@
-export const chunk = <T>(source: T[], chunkSize: number): T[][] => {
+export const getChunk = <T>(source: T[], chunkSize: number): T[][] => {
   const res = [];
   const arr = [...source];
   if (chunkSize === 0) {

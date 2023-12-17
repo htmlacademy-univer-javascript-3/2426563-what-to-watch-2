@@ -15,7 +15,7 @@ const ShowMore: React.FC<ShowMoreProps> = ({ handleClick }) => (
     >
       {LOCALE.SHOW_MORE}
     </button>
-  </div >
+  </div>
 );
 
 export default ShowMore;

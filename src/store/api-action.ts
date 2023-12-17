@@ -39,7 +39,7 @@ export const fetchFilmsAction = createAsyncThunk<
   );
 
 export const checkAuthAction = createAsyncThunk<
-  void,
+  IUserData,
   undefined,
   {
     dispatch: AppDispatch;
@@ -48,12 +48,13 @@ export const checkAuthAction = createAsyncThunk<
   }>(
     'user/checkAuth',
     async (_arg, { extra: api}) => {
-      await api.get(checkAuth());
+      const { data } = await api.get<IUserData>(checkAuth());
+      return data;
     },
   );
 
 export const loginAction = createAsyncThunk<
-  void,
+  IUserData,
   AuthData,
   {
     dispatch: AppDispatch;
@@ -62,9 +63,10 @@ export const loginAction = createAsyncThunk<
   }>(
     'user/login',
     async ({ login: email, password }, { dispatch, extra: api }) => {
-      const {data: { token }} = await api.post<IUserData>(login(), { email, password });
-      saveToken(token);
+      const { data } = await api.post<IUserData>(login(), { email, password });
+      saveToken(data.token);
       dispatch(redirectToRoute(AppRoute.Root));
+      return data;
     },
   );
 

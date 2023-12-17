@@ -1,19 +1,19 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import films from '../../mock/films';
+import { filmList } from '../../mock/films';
 import FilmList from './film-list';
 
 describe('Film List Component', () => {
   it('should render without errors with film list', () => {
     render(
       <MemoryRouter>
-        <FilmList filmList={films} />
+        <FilmList filmList={filmList} />
       </MemoryRouter>
     );
 
     const filmsList = screen.queryAllByTestId('small-film-card');
 
-    expect(filmsList).toHaveLength(films.length);
+    expect(filmsList).toHaveLength(filmList.length);
   });
 
   it('should render without errors with empty film list', () => {

@@ -31,6 +31,7 @@ const AddReview: React.FC = () => {
   const isFilmDataLoading = useAppSelector(getFilmDataLoadingStatus);
   const hasError = useAppSelector(getFilmErrorStatus);
   const [formValue, setFormValue] = useState<FormValueType>(initFormValue);
+  const [isServerError, setIsServerError] = useState<boolean>(false);
 
   useLayoutEffect(() => {
     if (params.id) {
@@ -41,25 +42,41 @@ const AddReview: React.FC = () => {
     };
   }, [params.id, dispatch]);
 
-  const onClickRating = useCallback((event?: React.ChangeEvent<HTMLInputElement>) => {
+  const handleClickRating = useCallback((event?: React.ChangeEvent<HTMLInputElement>) => {
     const rating = event?.target.value ? Number(event?.target.value) : null;
     setFormValue((prev) => ({ ...prev, rating }));
   }, []);
 
-  const onChangeText = (event?: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChangeText = (event?: React.ChangeEvent<HTMLTextAreaElement>) => {
     setFormValue((prev) => ({ ...prev, text: event?.target.value ?? '' }));
   };
 
-  const onPost = (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handlePost = (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event?.preventDefault();
-    if (film?.id === undefined || formValue.rating === null || formValue.text.length < MIN_LEN_REVIEW || formValue.text.length > MAX_LEN_REVIEW) {
+    if (
+      film?.id === undefined
+      || formValue.rating === null
+      || formValue.text.length < MIN_LEN_REVIEW
+      || formValue.text.length > MAX_LEN_REVIEW
+    ) {
       return;
     }
+
+    setIsServerError(false);
+
+
     dispatch(
       addReview({ filmId: film.id, rating: formValue.rating, comment: formValue.text })
-    ).then(() => {
-      navigate(`/films/${film.id}`);
+    ).then((s) => {
+      if (s.meta.requestStatus === 'fulfilled') {
+        navigate(`/films/${film.id}`);
+      } else {
+        setIsServerError(true);
+      }
+
     });
+
+
     setFormValue(initFormValue);
   };
 
@@ -81,7 +98,7 @@ const AddReview: React.FC = () => {
         <form action="#" className="add-review__form">
           <div className="rating">
             <RatingInput
-              onChange={onClickRating}
+              onChange={handleClickRating}
               selectedValue={formValue.rating}
             />
           </div>
@@ -92,14 +109,14 @@ const AddReview: React.FC = () => {
               id="review-text"
               data-testid="review-text"
               placeholder="Review text"
-              onChange={onChangeText}
+              onChange={handleChangeText}
               value={formValue.text}
             />
             <div className="add-review__submit">
               <button
                 className="add-review__btn"
                 type="submit"
-                onClick={onPost}
+                onClick={handlePost}
                 disabled={isDisabled}
               >
                 {LOCALE.POST}
@@ -108,6 +125,18 @@ const AddReview: React.FC = () => {
           </div>
         </form>
       </div>
+
+      {isServerError ?
+        <div style={{
+          color: 'red',
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: 5
+        }}
+        >
+          <span>{LOCALE.SERVER_ERROR}</span>
+        </div> :
+        null}
 
     </section>
   );

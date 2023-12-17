@@ -1,6 +1,21 @@
 import { IFilmAllInfo } from '../data/abstractions/IFilmAllInfo';
+import { IFilmData } from '../data/abstractions/IFilmData';
 
-
+export const filmList: IFilmData[] = [
+  {
+    name: 'Snatch',
+    previewImage: 'https://10.react.pages.academy/static/film/poster/Snatch.jpg',
+    id: '1',
+    genre: 'Comedy',
+    previewVideoLink: 'https://10.react.pages.academy/static/film/video/matrix.mp4'
+  },{
+    name: 'Gangs of new york',
+    previewImage: 'https://10.react.pages.academy/static/film/poster/Gangs_of_New_York_Poster.jpg',
+    genre: 'Crime',
+    id: '2',
+    previewVideoLink: 'https://10.react.pages.academy/static/film/video/matrix.mp4',
+  }
+];
 const films: IFilmAllInfo[] = [
   {
     name: 'Snatch',

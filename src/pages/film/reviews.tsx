@@ -1,5 +1,5 @@
 import React from 'react';
-import { chunk } from '../../utils/chunk';
+import { getChunk } from '../../utils/get-chunk';
 import { IReview } from '../../data/abstractions/IReview';
 import { formatDate } from '../../utils/format-date';
 
@@ -22,10 +22,10 @@ const Reviews: React.FC<{ reviews: IReview[] }> = ({ reviews }) => (
   <div className="film-card__reviews film-card__row">
     {reviews.length === 0 ?
       <p>Комментариев пока нет...</p> :
-      chunk(reviews, 3).map((threeReviews) => (
+      getChunk(reviews, 3).map((threeReviews) => (
         <div className="film-card__reviews-col" key={threeReviews.map(({ user }) => user).join('')}>
           {threeReviews.map((review) => (
-            <Review {...review} key={review.user} />
+            <Review {...review} key={review.id} />
           ))}
         </div>
       ))}

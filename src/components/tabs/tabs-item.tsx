@@ -1,19 +1,17 @@
 import React from 'react';
 import { ItemType } from './tabs.types';
 
-const TabsItem: React.FC<ItemType & { activeKey: string; onClick: (key: string) => void }> = ({
+const TabsItem: React.FC<ItemType & { activeKey: string; handleClick: (key: string) => void }> = ({
   label,
   option,
   activeKey,
-  onClick
+  handleClick
 }) => (
   <li className={`film-nav__item ${activeKey === option ? 'film-nav__item--active' : ''}`}>
     <div
       className="film-nav__link"
       key={option}
-      onClick={() => {
-        onClick(option);
-      }}
+      onClick={() => handleClick(option)}
     >
       {label}
     </div>

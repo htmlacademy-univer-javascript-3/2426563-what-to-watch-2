@@ -21,11 +21,14 @@ const Player: React.FC = () => {
   const isFilmDataLoading = useAppSelector(getFilmDataLoadingStatus);
   const {
     isPlaying,
-    progress,
+    currentTime,
+    duration,
+    isLoadingFilm,
     togglePlay,
-    handleProgress,
+    handleTimeUpdate,
     handleSlider,
-    handleFullSrceen
+    handleFullSrceen,
+    handleLoadedMetadata
   } = useVideoPlayer(videoRef, sliderRef);
 
   useLayoutEffect(() => {
@@ -47,16 +50,23 @@ const Player: React.FC = () => {
     return <Page404 />;
   }
 
+  const progress = (currentTime / duration) * 100;
+  const runTime = film.runTime * (1 - (currentTime / duration));
+
   return (
     <div className="player">
+      {isLoadingFilm ? <LoadingSreen /> : null}
       <video
-        src={film.videoLink}
         className="player__video"
         poster={film.backgroundImage}
         ref={videoRef}
-        autoPlay
-        onTimeUpdate={handleProgress}
-      />
+        autoPlay={false}
+        onTimeUpdate={handleTimeUpdate}
+        onLoadedMetadata={handleLoadedMetadata}
+      >
+        <source src={film.videoLink} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
       <Link type='button' className="player__exit" to={`/films/${film.id}`}>
         {LOCALE.EXIT}
@@ -66,7 +76,7 @@ const Player: React.FC = () => {
         <Progress
           handleSlider={handleSlider}
           progress={progress}
-          runTime={film.runTime * (100 - progress) / 100}
+          runTime={runTime}
           sliderRef={sliderRef}
         />
 

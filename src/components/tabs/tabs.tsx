@@ -14,7 +14,7 @@ const Tabs: React.FunctionComponent<TabsProps> = ({
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          {items.map((item) => <TabsItem {...item} key={item.option} activeKey={activeKey} onClick={handleClick} />)}
+          {items.map((item) => <TabsItem {...item} key={item.option} activeKey={activeKey} handleClick={handleClick} />)}
         </ul>
       </nav>
       {children?.find((child) => child?.key === activeKey) ?? null}

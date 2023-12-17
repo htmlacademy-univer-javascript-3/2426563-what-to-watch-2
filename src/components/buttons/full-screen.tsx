@@ -8,7 +8,7 @@ type FullScreenProps = {
 const FullScreen: React.FC<FullScreenProps> = ({ handleClick }) => (
   <button type="button" className="player__full-screen" onClick={handleClick}>
     <svg viewBox="0 0 27 27" width="27" height="27">
-      <use xlinkHref="#full-screen"></use>
+      <use xlinkHref="#full-screen" />
     </svg>
     <span>{LOCALE.FULL_SCREEN}</span>
   </button>

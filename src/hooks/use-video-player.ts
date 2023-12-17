@@ -1,8 +1,12 @@
 import { useState } from 'react';
 
 const useVideoPlayer = (videoRef: React.MutableRefObject<HTMLVideoElement | null>, sliderRef: React.MutableRefObject<HTMLDivElement | null>) => {
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isFullScreen, setFullScreen] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [isLoadingFilm, setIsLoadingFilm] = useState(true);
 
   const togglePlay = () => {
     if (videoRef.current === null) {
@@ -16,21 +20,31 @@ const useVideoPlayer = (videoRef: React.MutableRefObject<HTMLVideoElement | null
     setIsPlaying(!isPlaying);
   };
 
-  const handleProgress = () => {
-    if (videoRef.current === null) {
-      return;
-    }
-    const duration = videoRef.current.duration;
-    const currentTime = videoRef.current.currentTime;
-    const newProgress = (currentTime / duration) * 100;
-    setProgress(newProgress);
+  const handleLoadedMetadata = () => {
+    setDuration(videoRef.current?.duration ?? 0);
+    setIsLoadingFilm(false);
+  };
+
+  const handleTimeUpdate = () => {
+    setCurrentTime(videoRef.current?.currentTime ?? 0);
   };
 
   const handleFullSrceen = () => {
     if (videoRef.current === null) {
       return;
     }
-    videoRef.current.requestFullscreen();
+
+    try {
+      if (isFullScreen) {
+        document.exitFullscreen();
+      } else {
+        videoRef.current.requestFullscreen();
+      }
+      setFullScreen(!isFullScreen);
+    } catch (e) {
+      throw new Error('Error toggling fullscreen');
+    }
+
   };
 
   const handleSlider = (clientX: number) => {
@@ -45,10 +59,14 @@ const useVideoPlayer = (videoRef: React.MutableRefObject<HTMLVideoElement | null
   return {
     isPlaying,
     progress,
+    isLoadingFilm,
+    duration,
+    currentTime,
     togglePlay,
-    handleProgress,
+    handleTimeUpdate,
     handleSlider,
-    handleFullSrceen
+    handleFullSrceen,
+    handleLoadedMetadata
   };
 };
 

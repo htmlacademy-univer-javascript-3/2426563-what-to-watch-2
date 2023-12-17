@@ -3,7 +3,7 @@ import LOCALE from './footer.locale';
 
 const Footer: React.FC = () => (
   <footer className="page-footer">
-    <Logo/>
+    <Logo />
     <div className="copyright">
       <p>{LOCALE.COPYRIGHT}</p>
     </div>
