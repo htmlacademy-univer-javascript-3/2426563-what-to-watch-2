@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import SmallVideoPlayer from './small-video-player';
 import { TIMEOUT_SEC } from '../../data/constants/timeout';
+import SmallFilmCard from './small-film-card';
 
 const mockFilm = {
   id: '1',
@@ -15,7 +15,7 @@ describe('SmallVideoPlayer Component', () => {
   it('should render without errors', () => {
     render(
       <MemoryRouter>
-        <SmallVideoPlayer {...mockFilm} />
+        <SmallFilmCard {...mockFilm} />
       </MemoryRouter>
     );
 
@@ -25,7 +25,7 @@ describe('SmallVideoPlayer Component', () => {
   });
 
   it('should render video on mouse enter', () => {
-    render(<SmallVideoPlayer {...mockFilm} />);
+    render(<SmallFilmCard {...mockFilm} />);
     const containerElement = screen.getByRole('img', { name: 'Snatch' });
 
     fireEvent.mouseEnter(containerElement);
