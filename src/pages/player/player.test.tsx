@@ -45,7 +45,7 @@ describe('Player Component', () => {
 
     expect(screen.getByText(/Full screen/i)).toBeInTheDocument();
     expect(screen.getByText(/Snatch/i)).toBeInTheDocument();
-    expect(screen.getByText(/Pause/i)).toBeInTheDocument();
+    expect(screen.getByText(/Play/i)).toBeInTheDocument();
   });
 
   it('should render loading screen', () => {

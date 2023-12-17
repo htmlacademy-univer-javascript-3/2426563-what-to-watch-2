@@ -25,7 +25,10 @@ describe('SmallVideoPlayer Component', () => {
   });
 
   it('should render video on mouse enter', () => {
-    render(<SmallFilmCard {...mockFilm} />);
+    render(
+      <MemoryRouter>
+        <SmallFilmCard {...mockFilm} />
+      </MemoryRouter>);
     const containerElement = screen.getByRole('img', { name: 'Snatch' });
 
     fireEvent.mouseEnter(containerElement);
